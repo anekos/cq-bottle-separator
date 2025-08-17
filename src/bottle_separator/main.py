@@ -4,9 +4,10 @@ from pydantic import BaseModel
 
 
 class Param(BaseModel):
-    diameter: float = 80.0
-    thickness: float = 5.0
-    height: float = 60.0
+    diameter: float = 81.0
+    thickness: float = 2.0
+    height: float = 50.0
+    fillet: float = 5.0
 
     @property
     def filename(self) -> str:
@@ -21,6 +22,8 @@ def build(param: Param) -> cq.Workplane:
         .workplane(offset=param.thickness)
         .rect(param.diameter, param.thickness)
         .extrude(param.height)
+        .edges(">Z and |Y")
+        .fillet(param.fillet)
     )
 
     result = base.union(separator)
