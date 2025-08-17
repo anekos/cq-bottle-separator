@@ -1,0 +1,42 @@
+[project]
+name = "bottle-separator"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+bottle-separator = "bottle_separator:main"
+
+[build-system]
+requires = ["uv_build>=0.8.11,<0.9.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "cadquery>=2.5.2",
+    "click>=8.2.1",
+    "mypy>=1.17.1",
+    "pydantic>=2.11.7",
+    "pytest>=8.4.1",
+    "ruff>=0.12.9",
+]
+
+[tool.ruff.lint]
+select = ["I", "E4", "E7", "E9", "F", "W", "UP"]
+ignore = ["E741"]  # https://docs.astral.sh/ruff/rules/ambiguous-variable-name/
+fixable = ["ALL"]
+unfixable = []
+
+[tool.mypy]
+python_version = "3.12"
+warn_unused_configs = true
+show_error_codes = true
+check_untyped_defs = true
+namespace_packages = true
+disallow_untyped_defs = true
+
+# [[tool.mypy.overrides]]
+# module = "fitz"
+# ignore_missing_imports = true
